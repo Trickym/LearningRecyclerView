@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 class AdapterExample(private val exampleList:List<ModelClass>) : RecyclerView.Adapter<AdapterExample.ViewHolderExample>(){
@@ -24,9 +25,13 @@ class AdapterExample(private val exampleList:List<ModelClass>) : RecyclerView.Ad
         return exampleList.size
     }
 
-    class ViewHolderExample(itemView:View) : RecyclerView.ViewHolder(itemView){
+    inner class ViewHolderExample(itemView:View) : RecyclerView.ViewHolder(itemView){
         val imageView:ImageView = itemView.findViewById(R.id.image_view)
         val userName:TextView = itemView.findViewById(R.id.user_name)
-
+        init {
+            itemView.setOnClickListener {
+                Toast.makeText(itemView.context,"kya ${userName.text}! kaisa hai?",Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
